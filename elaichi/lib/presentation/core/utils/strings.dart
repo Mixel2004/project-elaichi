@@ -18,6 +18,8 @@ abstract class Strings {
   static const String searchIcon = 'assets/icons/search_icon.svg';
   static const String avenueLogo = 'assets/icons/avenue_logo.svg';
   static const String festLogo = 'assets/icons/fest_icon.svg';
+  static const String dscLogo = 'assets/images/dsc_logo2.png';
+  static const String dscLogo2 = 'assets/images/dsc_name.png';
 
   static const String zimbraCardText =
       'Verify your NITR webmail to access \nZimbra Mail';

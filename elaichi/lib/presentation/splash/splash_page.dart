@@ -37,11 +37,16 @@ class _SplashPageState extends State<SplashPage> {
       child: BlocConsumer<SplashCubit, SplashState>(
         listener: (context, state) {
           state.whenOrNull<dynamic>(
-            unauthenticated: () => Navigator.pushNamedAndRemoveUntil(
-              context,
-              AppRouter.signIn,
-              (route) => false,
-            ),
+            unauthenticated: () async {
+              await Future.delayed(
+                const Duration(seconds: 3),
+              );
+              return Navigator.pushNamedAndRemoveUntil(
+                context,
+                AppRouter.signIn,
+                (route) => false,
+              );
+            },
             googleAuthenticated: () => Navigator.pushNamedAndRemoveUntil(
               context,
               AppRouter.home,
@@ -58,7 +63,7 @@ class _SplashPageState extends State<SplashPage> {
                 child: Column(
                   children: [
                     SizedBox(
-                      height: SizeConfig.screenHeight! * 0.08,
+                      height: SizeConfig.screenHeight! * 0.06,
                     ),
                     Image.asset(Strings.avenueLogoFileUri),
                     SizedBox(
@@ -85,6 +90,17 @@ class _SplashPageState extends State<SplashPage> {
                         'assets/rive/loading.riv',
                       ),
                     ),
+                    SizedBox(
+                      height: SizeConfig.screenHeight! * 0.046,
+                    ),
+                    Image.asset(
+                      Strings.dscLogo,
+                      width: SizeConfig.screenWidth! * 0.2,
+                    ),
+                    Image.asset(
+                      Strings.dscLogo2,
+                      width: SizeConfig.screenWidth! * 0.7,
+                    )
                   ],
                 ),
               ),

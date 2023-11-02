@@ -41,7 +41,7 @@ class _SignInPageState extends State<SignInPage> {
             child: Column(
               children: [
                 SizedBox(
-                  height: SizeConfig.screenHeight! * 0.08,
+                  height: SizeConfig.screenHeight! * 0.03,
                 ),
                 Image.asset(Strings.avenueLogoFileUri),
                 SizedBox(
@@ -60,7 +60,7 @@ class _SignInPageState extends State<SignInPage> {
                 ),
                 Image.asset(Strings.kPlantLogoFileUri),
                 SizedBox(
-                  height: SizeConfig.screenHeight! * 0.12,
+                  height: SizeConfig.screenHeight! * 0.14,
                 ),
                 BlocConsumer<SignInCubit, SignInState>(
                   listener: (context, state) {
@@ -81,12 +81,31 @@ class _SignInPageState extends State<SignInPage> {
                   },
                   builder: (context, state) {
                     return state.maybeWhen(
-                      orElse: () => TransparentButton(
-                        text: 'Sign in with Google',
-                        onTapped: () =>
-                            context.read<SignInCubit>().signInWithGoogle(),
-                        icon: SvgPicture.asset(Strings.kGoogleLogoFileUri),
-                      ),
+                      orElse: () {
+                        return Column(
+                          children: [
+                            TransparentButton(
+                              text: 'Sign in with Google',
+                              onTapped: () => context
+                                  .read<SignInCubit>()
+                                  .signInWithGoogle(),
+                              icon:
+                                  SvgPicture.asset(Strings.kGoogleLogoFileUri),
+                            ),
+                            SizedBox(
+                              height: SizeConfig.screenHeight! * 0.015,
+                            ),
+                            Image.asset(
+                              Strings.dscLogo,
+                              width: SizeConfig.screenWidth! * 0.2,
+                            ),
+                            Image.asset(
+                              Strings.dscLogo2,
+                              width: SizeConfig.screenWidth! * 0.7,
+                            )
+                          ],
+                        );
+                      },
                       loading: () => const Center(
                         child: CircularProgressIndicator(),
                       ),
